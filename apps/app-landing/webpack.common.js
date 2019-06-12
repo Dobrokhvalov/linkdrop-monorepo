@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const path = require('path')
 const webpack = require('webpack')
 
@@ -37,6 +38,7 @@ const postCSSLoader = {
 
 module.exports = {
   entry: [
+    'webpack/hot/dev-server',
     '@babel/polyfill',
     './index.js',
     'webpack/hot/dev-server'
@@ -54,9 +56,15 @@ module.exports = {
       path.resolve('../../node_modules')
     ],
     alias: {
+<<<<<<< HEAD:apps/app-landing/webpack.common.js
       wallets: path.resolve(__dirname, '../../config/wallets'),
       config: path.resolve(__dirname, '../../config/app.config'),
       'config-landing': path.resolve(__dirname, '../../config/landing'),
+=======
+      wallets: path.resolve(__dirname, '../../configs/wallets.config'),
+      config: path.resolve(__dirname, '../../configs/app.config'),
+      'config-claim': path.resolve(__dirname, '../../configs/claim.config'),
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444:apps/app-claim/webpack.common.js
       contracts: path.resolve(__dirname, '../../contracts/build'),
       variables: path.resolve(__dirname, '../linkdrop-commons/variables/index.module.scss')
     }

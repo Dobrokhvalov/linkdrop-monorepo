@@ -11,7 +11,11 @@ This is a work in progress. Expect breaking changes. The code has not been audit
 - [SDK](https://github.com/LinkdropProtocol/linkdrop-monorepo/tree/master/sdk) - a JS library to generate and claim links (used in web apps)
 - [Web apps](https://github.com/LinkdropProtocol/linkdrop-monorepo/tree/master/apps) - web apps to interact with linkdrop service for end-users.  
 - [Scripts](https://github.com/LinkdropProtocol/linkdrop-monorepo/tree/master/scripts)  - scripts for setting up, deploying, generating links and claiming linkdrops
+<<<<<<< HEAD
 - [config](https://github.com/LinkdropProtocol/linkdrop-monorepo/tree/master/config) - configs used in other components (SDK, server, web apps)
+=======
+- [Configs](https://github.com/LinkdropProtocol/linkdrop-monorepo/tree/master/configs) - configs used in other components (SDK, server, web apps)
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
 
 
 ## Building, running & testing locally 

@@ -1,16 +1,31 @@
+<<<<<<< HEAD
 import LinkdropMastercopy from '../../contracts/build/LinkdropMastercopy'
 import LinkdropFactory from '../../contracts/build/LinkdropFactory'
 import TokenMock from '../../contracts/build/TokenMock'
 import NFTMock from '../../contracts/build/NFTMock'
 import LinkdropSDK from '../../sdk/src/index'
 
+=======
+import LinkdropSDK from '../../sdk/src/index'
+import { terminal as term } from 'terminal-kit'
+
+import { newError, getChainId, getLinksNumber, getIsApprove } from './utils'
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
 const ethers = require('ethers')
 const fs = require('fs')
 const fastcsv = require('fast-csv')
 const path = require('path')
+<<<<<<< HEAD
 const configPath = path.resolve(__dirname, '../../config/scripts.config.json')
 const config = require(configPath)
 
+=======
+const configPath = path.resolve(__dirname, '../../configs/scripts.config.json')
+const config = require(configPath)
+
+ethers.errors.setLogLevel('error')
+
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
 let {
   chainId,
   linkdropMasterPrivateKey,
@@ -26,6 +41,7 @@ let {
   version
 } = config
 
+<<<<<<< HEAD
 if (jsonRpcUrl == null || jsonRpcUrl === '') {
   throw new Error('Please provide JSON RPC url')
 }
@@ -311,3 +327,6 @@ export const generateLinksERC721 = async () => {
   }
   return links
 }
+=======
+const expirationTime = 12345678910 // 03/21/2361 @ 7:15pm (UTC)
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444

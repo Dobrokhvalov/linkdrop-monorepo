@@ -1,4 +1,8 @@
 import { createLink, createLinkERC721 } from './utils'
+<<<<<<< HEAD
+=======
+import { newError } from '../../scripts/src/utils'
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
 const ethers = require('ethers')
 
 export const generateLink = async ({
@@ -14,6 +18,7 @@ export const generateLink = async ({
   isApprove
 }) => {
   if (jsonRpcUrl === null || jsonRpcUrl === '') {
+<<<<<<< HEAD
     throw new Error('Please provide json rpc url')
   }
 
@@ -47,11 +52,50 @@ export const generateLink = async ({
 
   if (version === null || version === '') {
     throw new Error('Please provide contract version')
+=======
+    throw newError('Please provide json rpc url')
+  }
+
+  if (chainId === null || chainId === '') {
+    throw newError('Please provide chainId')
+  }
+
+  if (host === null || host === '') {
+    throw newError('Please provide host')
+  }
+
+  if (linkdropMasterPrivateKey === null || linkdropMasterPrivateKey === '') {
+    throw newError(`Please provide linkdropMaster's private key`)
+  }
+
+  if (weiAmount === null || weiAmount === '') {
+    throw newError('Please provide amount of eth to claim')
+  }
+
+  if (tokenAddress === null || tokenAddress === '') {
+    throw newError('Please provide ERC20 token address')
+  }
+
+  if (tokenAmount === null || tokenAmount === '') {
+    throw newError('Please provide amount of tokens to claim')
+  }
+
+  if (expirationTime === null || expirationTime === '') {
+    throw newError('Please provide expiration time')
+  }
+
+  if (version === null || version === '') {
+    throw newError('Please provide contract version')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 
   if (isApprove) {
     if (String(isApprove) !== 'true' && String(isApprove) !== 'false') {
+<<<<<<< HEAD
       throw new Error('Please provide valid isApprove argument')
+=======
+      throw newError('Please provide valid isApprove argument')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
     }
   }
 
@@ -93,6 +137,7 @@ export const generateLinkERC721 = async ({
   isApprove
 }) => {
   if (jsonRpcUrl === null || jsonRpcUrl === '') {
+<<<<<<< HEAD
     throw new Error('Please provide json rpc url')
   }
 
@@ -110,6 +155,25 @@ export const generateLinkERC721 = async ({
 
   if (weiAmount === null || weiAmount === '') {
     throw new Error('Please provide amount of eth to claim')
+=======
+    throw newError('Please provide json rpc url')
+  }
+
+  if (chainId === null || chainId === '') {
+    throw newError('Please provide chain id')
+  }
+
+  if (host === null || host === '') {
+    throw newError('Please provide host')
+  }
+
+  if (linkdropMasterPrivateKey === null || linkdropMasterPrivateKey === '') {
+    throw newError(`Please provide linkdropMaster's private key`)
+  }
+
+  if (weiAmount === null || weiAmount === '') {
+    throw newError('Please provide amount of eth to claim')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 
   if (
@@ -117,6 +181,7 @@ export const generateLinkERC721 = async ({
     nftAddress === '' ||
     nftAddress === ethers.constants.AddressZero
   ) {
+<<<<<<< HEAD
     throw new Error('Please provide ERC721 token address')
   }
 
@@ -130,11 +195,30 @@ export const generateLinkERC721 = async ({
 
   if (version === null || version === '') {
     throw new Error('Please provide contract version')
+=======
+    throw newError('Please provide ERC721 token address')
+  }
+
+  if (tokenId === null || tokenId === '') {
+    throw newError('Please provide token id to claim')
+  }
+
+  if (expirationTime === null || expirationTime === '') {
+    throw newError('Please provide expiration time')
+  }
+
+  if (version === null || version === '') {
+    throw newError('Please provide contract version')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 
   if (isApprove) {
     if (String(isApprove) !== 'true' && String(isApprove) !== 'false') {
+<<<<<<< HEAD
       throw new Error('Please provide valid isApprove argument')
+=======
+      throw newError('Please provide valid isApprove argument')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
     }
   }
 

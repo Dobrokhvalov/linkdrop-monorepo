@@ -24,7 +24,11 @@ module.exports = shipit => {
 
   shipit.task('copyConfig', async () => {
     await shipit.copyToRemote(
+<<<<<<< HEAD
       '../../config/server.config.json',
+=======
+      '../../configs/server.config.json',
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
       'linkdrop/linkdrop-monorepo/current/config/server.config.json'
     )
   })

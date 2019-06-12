@@ -1,5 +1,9 @@
 const webpack = require('webpack')
 const path = require('path')
+<<<<<<< HEAD
+=======
+const webpack = require('webpack')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
 
 const CSSModuleLoader = {
   loader: 'css-loader',
@@ -39,7 +43,12 @@ module.exports = {
   entry: [
     'webpack/hot/dev-server',
     '@babel/polyfill',
+<<<<<<< HEAD
     './index.js'
+=======
+    './index.js',
+    'webpack/hot/dev-server'
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   ],
   output: {
     filename: 'bundle.js',
@@ -54,9 +63,21 @@ module.exports = {
       path.resolve('../../node_modules')
     ],
     alias: {
+<<<<<<< HEAD
       wallets: path.resolve(__dirname, '../../config/wallets'),
       config: path.resolve(__dirname, '../../config/app.config'),
       'config-claim': path.resolve(__dirname, '../../config/claim'),
+=======
+<<<<<<< HEAD:apps/app-landing/webpack.common.js
+      wallets: path.resolve(__dirname, '../../config/wallets'),
+      config: path.resolve(__dirname, '../../config/app.config'),
+      'config-landing': path.resolve(__dirname, '../../config/landing'),
+=======
+      wallets: path.resolve(__dirname, '../../configs/wallets.config'),
+      config: path.resolve(__dirname, '../../configs/app.config'),
+      'config-claim': path.resolve(__dirname, '../../configs/claim.config'),
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444:apps/app-claim/webpack.common.js
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
       contracts: path.resolve(__dirname, '../../contracts/build'),
       variables: path.resolve(__dirname, '../linkdrop-commons/variables/index.module.scss')
     }

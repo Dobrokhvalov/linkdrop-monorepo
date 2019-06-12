@@ -1,7 +1,15 @@
 import { signReceiverAddress } from './utils'
+<<<<<<< HEAD
 const ethers = require('ethers')
 const axios = require('axios')
 
+=======
+import { newError } from '../../scripts/src/utils'
+import ora from 'ora'
+import { terminal as term } from 'terminal-kit'
+const ethers = require('ethers')
+const axios = require('axios')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
 export const claim = async ({
   jsonRpcUrl,
   host,
@@ -18,6 +26,7 @@ export const claim = async ({
   isApprove
 }) => {
   if (jsonRpcUrl === null || jsonRpcUrl === '') {
+<<<<<<< HEAD
     throw new Error('Please provide json rpc url')
   }
 
@@ -63,11 +72,62 @@ export const claim = async ({
 
   if (receiverAddress === null || receiverAddress === '') {
     throw new Error('Please provide receiver address')
+=======
+    throw newError('Please provide json rpc url')
+  }
+
+  if (host === null || host === '') {
+    throw newError('Please provide host')
+  }
+
+  if (weiAmount === null || weiAmount === '') {
+    throw newError('Please provide amount of eth to claim')
+  }
+
+  if (tokenAddress === null || tokenAddress === '') {
+    throw newError('Please provide ERC20 token address')
+  }
+
+  if (tokenAmount === null || tokenAmount === '') {
+    throw newError('Please provide amount of tokens to claim')
+  }
+
+  if (expirationTime === null || expirationTime === '') {
+    throw newError('Please provide expiration time')
+  }
+
+  if (version === null || version === '') {
+    throw newError('Please provide mastercopy version ')
+  }
+
+  if (chainId === null || chainId === '') {
+    throw newError('Please provide chain id')
+  }
+
+  if (linkKey === null || linkKey === '') {
+    throw newError('Please provide link key')
+  }
+
+  if (linkdropMasterAddress === null || linkdropMasterAddress === '') {
+    throw newError('Please provide linkdropMaster address')
+  }
+
+  if (linkdropSignerSignature === null || linkdropSignerSignature === '') {
+    throw newError('Please provide linkdropMaster signature')
+  }
+
+  if (receiverAddress === null || receiverAddress === '') {
+    throw newError('Please provide receiver address')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 
   if (isApprove) {
     if (String(isApprove) !== 'true' && String(isApprove) !== 'false') {
+<<<<<<< HEAD
       throw new Error('Please provide valid isApprove argument')
+=======
+      throw newError('Please provide valid isApprove argument')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
     }
   }
 
@@ -99,6 +159,7 @@ export const claim = async ({
       `${host}/api/v1/linkdrops/claim`,
       claimParams
     )
+<<<<<<< HEAD
     if (response.status !== 200) {
       console.error(`\n❌ Invalid response status ${response.status}`)
     } else {
@@ -119,6 +180,19 @@ export const claim = async ({
     }
   } catch (err) {
     console.error(err)
+=======
+
+    if (response.status !== 200) {
+      throw newError(
+        term.red.bold.str(`Invalid response status ${response.status}`)
+      )
+    } else {
+      const { error, success, txHash } = response.data
+      return { error, success, txHash }
+    }
+  } catch (err) {
+    throw newError(err)
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 }
 
@@ -138,6 +212,7 @@ export const claimERC721 = async ({
   isApprove
 }) => {
   if (jsonRpcUrl === null || jsonRpcUrl === '') {
+<<<<<<< HEAD
     throw new Error('Please provide json rpc url')
   }
 
@@ -147,6 +222,17 @@ export const claimERC721 = async ({
 
   if (weiAmount === null || weiAmount === '') {
     throw new Error('Please provide amount of eth to claim')
+=======
+    throw newError('Please provide json rpc url')
+  }
+
+  if (host === null || host === '') {
+    throw newError('Please provide host')
+  }
+
+  if (weiAmount === null || weiAmount === '') {
+    throw newError('Please provide amount of eth to claim')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 
   if (
@@ -154,6 +240,7 @@ export const claimERC721 = async ({
     nftAddress === '' ||
     nftAddress === ethers.constants.AddressZero
   ) {
+<<<<<<< HEAD
     throw new Error('Please provide ERC721 token address')
   }
 
@@ -187,11 +274,50 @@ export const claimERC721 = async ({
 
   if (receiverAddress === null || receiverAddress === '') {
     throw new Error('Please provide receiver address')
+=======
+    throw newError('Please provide ERC721 token address')
+  }
+
+  if (tokenId === null || tokenId === '') {
+    throw newError('Please provide token id to claim')
+  }
+
+  if (expirationTime === null || expirationTime === '') {
+    throw newError('Please provide expiration time')
+  }
+
+  if (version === null || version === '') {
+    throw newError('Please provide mastercopy version ')
+  }
+
+  if (chainId === null || chainId === '') {
+    throw newError('Please provide chain id')
+  }
+
+  if (linkKey === null || linkKey === '') {
+    throw newError('Please provide link key')
+  }
+
+  if (linkdropMasterAddress === null || linkdropMasterAddress === '') {
+    throw newError('Please provide linkdropMaster address')
+  }
+
+  if (linkdropSignerSignature === null || linkdropSignerSignature === '') {
+    throw newError('Please provide linkdropMaster signature')
+  }
+
+  if (receiverAddress === null || receiverAddress === '') {
+    throw newError('Please provide receiver address')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 
   if (isApprove) {
     if (String(isApprove) !== 'true' && String(isApprove) !== 'false') {
+<<<<<<< HEAD
       throw new Error('Please provide valid isApprove argument')
+=======
+      throw newError('Please provide valid isApprove argument')
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
     }
   }
 
@@ -224,6 +350,7 @@ export const claimERC721 = async ({
       claimParams
     )
     if (response.status !== 200) {
+<<<<<<< HEAD
       console.error(`\n❌ Invalid response status ${response.status}`)
     } else {
       if (response.data.success === true) {
@@ -243,5 +370,14 @@ export const claimERC721 = async ({
     }
   } catch (err) {
     console.error(err)
+=======
+      throw newError(`Invalid response status ${response.status}`)
+    } else {
+      const { error, success, txHash } = response.data
+      return { error, success, txHash }
+    }
+  } catch (err) {
+    throw newError(err)
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   }
 }

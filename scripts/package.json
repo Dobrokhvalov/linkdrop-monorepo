@@ -7,9 +7,19 @@
     "axios": "^0.18.0",
     "csvtojson": "^2.0.8",
     "fast-csv": "^2.4.1",
+<<<<<<< HEAD
     "query-string": "^6.4.2"
+=======
+    "ora": "^3.4.0",
+    "query-string": "^6.4.2",
+    "terminal-kit": "^1.28.0"
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
   },
   "babel": {
     "extends": "../babel.config.js"
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 03b84d84d0e4d2dcbf7ff3f564d1673ae30f3444
