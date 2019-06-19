@@ -7,6 +7,7 @@ import { getHashVariables } from 'linkdrop-commons'
 import config from 'config-claim'
 import classNames from 'classnames'
 import Fingerprint2 from 'fingerprintjs2'
+import { chainId } from 'app.config.js'
 
 @actions(({ tokens: { transactionId, transactionStatus } }) => ({ transactionId, transactionStatus }))
 @translate('pages.main')
@@ -35,7 +36,6 @@ class ClaimingProcessPage extends React.Component {
   }
 
   render () {
-    const { chainId } = getHashVariables()
     const { transactionId } = this.props
     return <div className={commonStyles.container}>
       <Loading container size='small' className={styles.loading} />

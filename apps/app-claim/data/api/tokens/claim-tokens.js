@@ -1,9 +1,10 @@
 import fetch from '../fetch'
+import { claimHost } from 'app.config.js'
 
 export default ({ address, fingerprint }) => {
   // address, fingerprint
   const body = JSON.stringify({ address, fingerprint })
-  return fetch('http://104.236.71.227:5011/api/v1/claim-link', { method: 'POST', body })
+  return fetch(`${claimHost}/api/v1/claim-link`, { method: 'POST', body })
 }
 
 // POST

@@ -72,7 +72,7 @@ class Claim extends React.Component {
   }
 
   renderCurrentPage ({ context }) {
-    const { step, userLoading, errors, alreadyClaimed } = this.props
+    const { step, userLoading, errors, alreadyClaimed, decimals, amount, symbol } = this.props
     // in context we can find:
     // active,
     // connectorName,
@@ -84,7 +84,7 @@ class Claim extends React.Component {
     const {
       account
     } = context
-    const commonData = { decimals: 1, amount: 100, symbol: 'MANA', icon: ManaImage, wallet: account, loading: userLoading }
+    const commonData = { decimals, amount, symbol, icon: ManaImage, wallet: account, loading: userLoading }
     if (errors && errors.length > 0) {
       // if some errors occured and can be found in redux store, then show error page
       return <ErrorPage error={errors[0]} />

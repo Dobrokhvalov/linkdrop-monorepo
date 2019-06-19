@@ -8,6 +8,7 @@ import config from 'config-claim'
 import classNames from 'classnames'
 import variables from 'variables'
 import text from 'texts'
+import { decentralandUrl } from 'app.config.js'
 
 @actions(({ tokens: { transactionId } }) => ({ transactionId }))
 @translate('pages.main')
@@ -28,7 +29,7 @@ class ClaimingFinishedPage extends React.Component {
           })
         }}
       />
-      <Button className={styles.button} href='/'>
+      <Button className={styles.button} href={decentralandUrl}>
         {text('common.buttons.goToDecentraland')}
       </Button>
     </div>

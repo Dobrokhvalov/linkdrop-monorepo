@@ -100,9 +100,11 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      JSON_RPC_URL: JSON.stringify(process.env.JSON_RPC_URL),
-      MASTER_COPY: JSON.stringify(process.env.MASTER_COPY),
-      FACTORY: JSON.stringify(process.env.FACTORY),
+      CHAIN_ID: JSON.stringify(process.env.CHAIN_ID),
+      AMOUNT: JSON.stringify(process.env.AMOUNT),
+      SYMBOL: JSON.stringify(process.env.SYMBOL),
+      CLAIM_HOST: JSON.stringify(process.env.CLAIM_HOST),
+      DECENTRALAND_URL: JSON.stringify(process.env.DECENTRALAND_URL),
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
       }

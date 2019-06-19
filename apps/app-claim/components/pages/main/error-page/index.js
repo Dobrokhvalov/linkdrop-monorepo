@@ -5,6 +5,7 @@ import text from 'texts'
 import styles from './styles.module'
 import commonStyles from '../styles.module'
 import variables from 'variables'
+import { decentralandUrl } from 'app.config.js'
 
 @translate('pages.main')
 class ErrorPage extends React.Component {
@@ -19,7 +20,7 @@ class ErrorPage extends React.Component {
       {Object.keys(instructions).length > 0 && <div className={styles.instructions}>
         {Object.keys(instructions).map(item => <div dangerouslySetInnerHTML={{ __html: instructions[item] }} />)}
       </div>}
-      <Button className={styles.button} href='/'>
+      <Button className={styles.button} href={decentralandUrl}>
         {text('common.buttons.goToDecentraland')}
       </Button>
     </div>
