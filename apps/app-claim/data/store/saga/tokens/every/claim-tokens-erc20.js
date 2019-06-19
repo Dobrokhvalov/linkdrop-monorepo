@@ -1,41 +1,19 @@
-import { put } from 'redux-saga/effects'
-import { factory, apiHost, jsonRpcUrl } from 'app.config.js'
-import LinkdropSDK from 'sdk/src/index'
-import { ethers } from 'ethers'
-import { defineNetworkName } from 'linkdrop-commons'
-import LinkdropFactory from 'contracts/LinkdropFactory.json'
+import { put, call } from 'redux-saga/effects'
+import { claimTokens } from 'data/api/tokens'
+const ls = window.localStorage
 
 const generator = function * ({ payload }) {
   try {
-    const { isApprove = 'false', wallet, tokenAddress, chainId, tokenAmount, weiAmount, expirationTime, linkKey, linkdropMasterAddress, linkdropSignerSignature } = payload
+    const { address, fingerprint } = payload
     yield put({ type: 'USER.SET_LOADING', payload: { loading: true } })
-    const networkName = defineNetworkName({ chainId })
-    const provider = yield ethers.getDefaultProvider(networkName)
-    const factoryContract = yield new ethers.Contract(factory, LinkdropFactory.abi, provider)
-    const version = yield factoryContract.getProxyMasterCopyVersion(linkdropMasterAddress)
-    const { success, txHash, error: { reason = [] } = {} } = yield LinkdropSDK.claim({
-      jsonRpcUrl,
-      host: apiHost,
-      weiAmount: weiAmount || '0',
-      tokenAddress,
-      tokenAmount: tokenAmount || '0',
-      expirationTime,
-      linkKey,
-      linkdropMasterAddress,
-      linkdropSignerSignature,
-      receiverAddress: wallet,
-      isApprove,
-      chainId,
-      version: String(version.toNumber())
-    })
+    const { success, txHash, message } = yield call(claimTokens, { address, fingerprint })
 
     if (success) {
       yield put({ type: 'TOKENS.SET_TRANSACTION_ID', payload: { transactionId: txHash } })
+      ls && ls.setItem('claimed', 'true')
     } else {
-      if (reason.length > 0) {
-        if (reason[0] === 'Insufficient amount of eth') {
-          yield put({ type: 'USER.SET_ERRORS', payload: { errors: ['LINK_FAILED'] } })
-        }
+      if (message && (message === 'All links have been claimed' || message === 'Campaign is over')) {
+        yield put({ type: 'USER.SET_ERRORS', payload: { errors: ['ALL_LINKS_CLAIMED'] } })
       }
     }
     yield put({ type: 'USER.SET_LOADING', payload: { loading: false } })
@@ -45,7 +23,3 @@ const generator = function * ({ payload }) {
 }
 
 export default generator
-
-generator.selectors = {
-  wallet: ({ user: { wallet } }) => wallet
-}

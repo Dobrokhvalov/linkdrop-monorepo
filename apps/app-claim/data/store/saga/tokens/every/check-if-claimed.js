@@ -1,21 +1,16 @@
 import { put } from 'redux-saga/effects'
-import { ethers } from 'ethers'
-import { factory } from 'app.config.js'
-import { defineNetworkName } from 'linkdrop-commons'
-import LinkdropFactory from 'contracts/LinkdropFactory.json'
+const ls = window.localStorage
 
-const generator = function * ({ payload }) {
+const generator = function * () {
   try {
     yield put({ type: 'USER.SET_LOADING', payload: { loading: true } })
-    const { linkdropMasterAddress, linkKey, chainId } = payload
-    const networkName = defineNetworkName({ chainId })
-    const provider = yield ethers.getDefaultProvider(networkName)
-    const linkWallet = yield new ethers.Wallet(linkKey, provider)
-    const linkId = yield linkWallet.address
-    const factoryContract = yield new ethers.Contract(factory, LinkdropFactory.abi, provider)
-    const claimed = yield factoryContract.isClaimedLink(linkdropMasterAddress, linkId)
-    yield put({ type: 'USER.SET_ALREADY_CLAIMED', payload: { alreadyClaimed: claimed } })
-    yield put({ type: 'USER.SET_READY_TO_CLAIM', payload: { readyToClaim: true } })
+    const claimed = ls && ls.getItem('claimed')
+    if (claimed) {
+      yield put({ type: 'USER.SET_ALREADY_CLAIMED', payload: { alreadyClaimed: claimed } })
+      yield put({ type: 'USER.SET_STEP', payload: { step: 5 } })
+    } else {
+      yield put({ type: 'USER.SET_STEP', payload: { step: 1 } })
+    }
     yield put({ type: 'USER.SET_LOADING', payload: { loading: false } })
   } catch (e) {
     console.error(e)

@@ -28,6 +28,10 @@ export default {
       title: 'Failed',
       description: 'Oops, something went wrong'
     },
+    ALL_LINKS_CLAIMED: {
+      title: 'All rewards claimed',
+      description: 'You can still create your avatar and claim your name'
+    },
     NETWORK_NOT_SUPPORTED: {
       title: 'Network is not supported',
       description: 'Switch to {{network}}',

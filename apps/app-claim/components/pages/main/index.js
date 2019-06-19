@@ -6,8 +6,9 @@ import WalletChoosePage from './wallet-choose-page'
 import ClaimingProcessPage from './claiming-process-page'
 import ErrorPage from './error-page'
 import ClaimingFinishedPage from './claiming-finished-page'
-import { getHashVariables, defineNetworkName, capitalize } from 'linkdrop-commons'
+import { getHashVariables } from 'linkdrop-commons'
 import { Web3Consumer } from 'web3-react'
+import ManaImage from './mana.png'
 
 @actions(({ user: { errors, step, loading: userLoading, readyToClaim, alreadyClaimed }, tokens: { transactionId }, contract: { loading, decimals, amount, symbol, icon } }) => ({
   userLoading,
@@ -26,12 +27,7 @@ import { Web3Consumer } from 'web3-react'
 @translate('pages.claim')
 class Claim extends React.Component {
   componentDidMount () {
-    const {
-      linkKey,
-      chainId,
-      linkdropMasterAddress
-    } = getHashVariables()
-    this.actions().tokens.checkIfClaimed({ linkKey, chainId, linkdropMasterAddress })
+    this.actions().tokens.checkIfClaimed()
   }
 
   componentWillReceiveProps ({ readyToClaim, alreadyClaimed }) {
@@ -43,13 +39,7 @@ class Claim extends React.Component {
       alreadyClaimed == null
     ) { return }
     const {
-      tokenAddress,
-      weiAmount,
-      tokenAmount,
-      expirationTime,
-      chainId,
-      nftAddress,
-      tokenId
+      expirationTime
     } = getHashVariables()
     // params in url:
     // token - contract/token address,
@@ -73,11 +63,6 @@ class Claim extends React.Component {
       // show error page if link expired
       return this.actions().user.setErrors({ errors: ['LINK_EXPIRED'] })
     }
-
-    if (nftAddress && tokenId) {
-      return this.actions().contract.getTokenERC721Data({ nftAddress, tokenId, chainId })
-    }
-    this.actions().contract.getTokenERC20Data({ tokenAddress, weiAmount, tokenAmount, chainId })
   }
 
   render () {
@@ -87,7 +72,7 @@ class Claim extends React.Component {
   }
 
   renderCurrentPage ({ context }) {
-    const { decimals, amount, symbol, icon, step, userLoading, errors, alreadyClaimed } = this.props
+    const { step, userLoading, errors, alreadyClaimed } = this.props
     // in context we can find:
     // active,
     // connectorName,
@@ -97,33 +82,16 @@ class Claim extends React.Component {
     // account,
     // error
     const {
-      account,
-      networkId
+      account
     } = context
-    const {
-      chainId
-    } = getHashVariables()
-    const commonData = { decimals, amount, symbol, icon, wallet: account, loading: userLoading }
-    if (this.platform === 'desktop' && !account) {
-      return <div>
-        <ErrorPage
-          error='NEED_METAMASK'
-        />
-      </div>
-    }
-    if (
-      (this.platform === 'desktop' && networkId && Number(chainId) !== Number(networkId)) ||
-      (this.platform !== 'desktop' && account && networkId && Number(chainId) !== Number(networkId))) {
-      // if network id in the link and in the web3 are different
-      return <ErrorPage error='NETWORK_NOT_SUPPORTED' network={capitalize({ string: defineNetworkName({ chainId }) })} />
-    }
+    const commonData = { decimals: 1, amount: 100, symbol: 'MANA', icon: ManaImage, wallet: account, loading: userLoading }
     if (errors && errors.length > 0) {
       // if some errors occured and can be found in redux store, then show error page
       return <ErrorPage error={errors[0]} />
     }
 
     if (alreadyClaimed) {
-      // if tokens we already claimed (if wallet is totally empty).
+      // if tokens were already claimed (if proxy address is totally empty).
       return <ClaimingFinishedPage
         {...commonData}
       />

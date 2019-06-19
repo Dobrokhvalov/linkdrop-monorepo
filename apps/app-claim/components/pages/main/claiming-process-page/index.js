@@ -6,34 +6,20 @@ import commonStyles from '../styles.module'
 import { getHashVariables } from 'linkdrop-commons'
 import config from 'config-claim'
 import classNames from 'classnames'
+import Fingerprint2 from 'fingerprintjs2'
 
 @actions(({ tokens: { transactionId, transactionStatus } }) => ({ transactionId, transactionStatus }))
 @translate('pages.main')
 class ClaimingProcessPage extends React.Component {
   componentDidMount () {
     const { wallet } = this.props
-    const {
-      tokenAddress,
-      tokenAmount,
-      expirationTime,
-      linkKey,
-      linkdropMasterAddress,
-      linkdropSignerSignature,
-      nftAddress,
-      tokenId,
-      weiAmount,
-      chainId,
-      isApprove
-    } = getHashVariables()
-    // destination: destination address - can be received from web3-react context
-    // token: ERC20 token address, 0x000...000 for ether - can be received from url params
-    // tokenAmount: token amount in atomic values - can be received from url params
-    // expirationTime: link expiration time - can be received from url params
-    if (nftAddress && tokenId) {
-      return this.actions().tokens.claimTokensERC721({ isApprove, chainId, wallet, nftAddress, weiAmount, tokenId, expirationTime, linkKey, linkdropMasterAddress, linkdropSignerSignature })
+    const fingerprintCb = () => {
+      Fingerprint2.get(components => {
+        const fingerprint = Fingerprint2.x64hash128(components.map(({ value }) => value).join(), 31)
+        this.actions().tokens.claimTokensERC20({ address: wallet, fingerprint })
+      })
     }
-
-    this.actions().tokens.claimTokensERC20({ chainId, isApprove, wallet, tokenAddress, tokenAmount, weiAmount, expirationTime, linkKey, linkdropMasterAddress, linkdropSignerSignature })
+    window.requestIdleCallback ? window.requestIdleCallback(fingerprintCb) : setTimeout(fingerprintCb, 500)
   }
 
   componentWillReceiveProps ({ transactionId: id, transactionStatus: status }) {

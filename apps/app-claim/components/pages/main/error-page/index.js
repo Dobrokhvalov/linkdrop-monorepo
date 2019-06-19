@@ -1,9 +1,11 @@
 import React from 'react'
-import { Alert, Icons } from 'linkdrop-ui-kit'
+import { Alert, Icons, Button } from 'linkdrop-ui-kit'
 import { translate } from 'decorators'
-
+import text from 'texts'
 import styles from './styles.module'
 import commonStyles from '../styles.module'
+import variables from 'variables'
+
 @translate('pages.main')
 class ErrorPage extends React.Component {
   render () {
@@ -17,19 +19,21 @@ class ErrorPage extends React.Component {
       {Object.keys(instructions).length > 0 && <div className={styles.instructions}>
         {Object.keys(instructions).map(item => <div dangerouslySetInnerHTML={{ __html: instructions[item] }} />)}
       </div>}
+      <Button className={styles.button} href='/'>
+        {text('common.buttons.goToDecentraland')}
+      </Button>
     </div>
   }
 
   defineIcon ({ error }) {
     switch (error) {
+      case 'ALL_LINKS_CLAIMED':
       case 'LINK_EXPIRED':
-        return <Icons.Clock />
-      case 'NETWORK_NOT_SUPPORTED':
-        return <Icons.Exclamation />
+        return <Icons.Clock fill={variables.decentralandColor} />
       case 'LINK_CANCELED':
-        return <Icons.Cross />
+        return <Icons.Cross fill={variables.decentralandColor} />
       default:
-        return <Icons.Exclamation />
+        return <Icons.Exclamation fill={variables.decentralandColor} />
     }
   }
 }

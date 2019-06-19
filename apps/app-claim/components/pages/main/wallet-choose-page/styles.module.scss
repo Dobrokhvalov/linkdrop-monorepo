@@ -34,37 +34,11 @@
 .button {
   margin-bottom: 50px;
   max-width: 100%;
-}
-
-.instructions {
-  width: 100%;
-  text-align: left;
-  font-size: 14px;
-  margin-bottom: 30px;
-
-  div {
-    margin-bottom: 12px;
-    &:last-child {
-      margin-bottom: 0px;
-    }
-  }
-}
-
-.instructionTitle {
-  margin-bottom: 40px;
+  background: $decentralandColor;
 }
 
 .walletPreview {
   margin-bottom: 30px;
-}
-
-.slider {
-  left: 100%;
-  opacity: 0;
-  z-index: 1;
-  width: 100%;
-  top: 0px;
-  position: absolute;
 }
 
 .wallet {
@@ -90,94 +64,5 @@
   &:hover {
     background: $bgHoverGreyColor;
     border-color: $borderHoverGreyColor;
-  }
-}
-
-.sliderShow .subtitle {
-  animation: titleOut .5s forwards;
-}
-
-.sliderShow .slider {
-  animation: sliderIn .5s forwards;
-}
-
-.sliderHide .subtitle {
-  animation: titleIn .5s forwards;
-}
-
-.sliderHide .slider {
-  animation: sliderOut .5s forwards;
-}
-
-@keyframes titleOut {
-  0% {
-    left: 0%;
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
-    display: none;
-    left: -100%;
-    z-index: 1;
-  }
-}
-
-@keyframes sliderIn {
-  0% {
-    left: 100%;
-    opacity: 0;
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-    display: block;
-    left: 0%;
-    z-index: 2;
-  }
-}
-
-
-@keyframes titleIn {
-  0% {
-    opacity: 0;
-    display: none;
-    left: -100%;
-    z-index: 1;
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    left: 0%;
-    opacity: 1;
-  }
-}
-
-@keyframes sliderOut {
-  0% {
-    opacity: 1;
-    display: block;
-    left: 0%;
-    z-index: 2;
-  }
-
-  80% {
-    opacity: 0;
-  }
-
-  100% {
-    left: 100%;
-    opacity: 0;
   }
 }
