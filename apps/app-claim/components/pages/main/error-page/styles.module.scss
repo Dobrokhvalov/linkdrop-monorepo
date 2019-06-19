@@ -8,11 +8,16 @@
 
 .description {
   margin-bottom: 40px;
-  font-size: 18px;
+  max-width: 206px;
+  font-size: 14px;
 }
 
 .alert {
   margin-bottom: 40px;
+}
+
+.button {
+  background: $decentralandColor;
 }
 
 .instructions {

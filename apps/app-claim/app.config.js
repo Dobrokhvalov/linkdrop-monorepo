@@ -1,20 +1,15 @@
-/* global JSON_RPC_URL, MASTER_COPY, FACTORY */
-let jsonRpcUrl, masterCopy, factory
-try {
-  const config = require('../../configs/scripts.config.json')
-  jsonRpcUrl = String(config.jsonRpcUrl)
-  masterCopy = String(config.masterCopy)
-  factory = String(config.factory)
-} catch (e) {
-  jsonRpcUrl = JSON_RPC_URL
-  masterCopy = MASTER_COPY
-  factory = FACTORY
-}
+/* global CHAIN_ID, AMOUNT, SYMBOL, CLAIM_HOST, DECENTRALAND_URL */
+const config = require('../../configs/claim.config.json')
+const chainId = CHAIN_ID || config.defaultChainId
+const defaultAmount = AMOUNT || config.defaultAmount
+const defaultSymbol = SYMBOL || config.defaultSymbol
+const claimHost = CLAIM_HOST || config.claimHost
+const decentralandUrl = DECENTRALAND_URL || config.decentralandUrl
 
 module.exports = {
-  jsonRpcUrl,
-  claimHost: 'https://claim.linkdrop.io',
-  apiHost: 'https://rinkeby.linkdrop.io',
-  masterCopy,
-  factory
+  chainId,
+  defaultAmount,
+  defaultSymbol,
+  claimHost,
+  decentralandUrl
 }

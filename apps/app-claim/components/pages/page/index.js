@@ -1,5 +1,6 @@
 import React from 'react'
-import { Header, Footer } from 'linkdrop-ui-kit'
+import { Footer } from 'linkdrop-ui-kit'
+import { Header } from 'components/common'
 import styles from './styles.module'
 import { translate } from 'decorators'
 import text from 'texts'
@@ -7,7 +8,7 @@ import text from 'texts'
 class Page extends React.Component {
   render () {
     return <div className={styles.container}>
-      <Header title={this.t('titles.getTokens')} />
+      <Header />
       <div className={styles.main}>
         {this.props.children}
       </div>

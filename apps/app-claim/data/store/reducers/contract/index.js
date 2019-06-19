@@ -1,11 +1,12 @@
 import reducers from './reducers'
+import { defaultAmount, defaultSymbol } from 'app.config.js'
 
 const initialState = {
   loading: false,
-  decimals: 0,
-  amount: 0,
+  decimals: 1,
+  amount: defaultAmount,
   icon: undefined,
-  symbol: null
+  symbol: defaultSymbol
 }
 
 export default (state = initialState, action = {}) => {
