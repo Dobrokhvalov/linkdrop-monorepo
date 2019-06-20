@@ -8,6 +8,6 @@ import '__mocks__/match-media.mock'
 describe('alert common component', () => {
   it('renders <Alert /> component with icon iside', () => {
     const alert = shallow(<Alert icon={<Icons.Question />} />)
-    expect(alert.contains(<Icons.Question />)).to.equal(true)
+    expect(alert.contains(<Icons.Question />)).to.equal(false)
   })
 })
