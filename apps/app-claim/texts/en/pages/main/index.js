@@ -1,6 +1,6 @@
 export default {
   titles: {
-    needWallet: 'You need a wallet to claim tokens',
+    needWallet: 'You need Trust Wallet to claim MANA',
     haveAnother: 'Have another wallet?',
     claimTo: 'Claim to: <span>{{wallet}}</span>',
     transactionInProcess: 'Transaction is processing',

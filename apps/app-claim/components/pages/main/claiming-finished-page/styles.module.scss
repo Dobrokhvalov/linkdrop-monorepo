@@ -10,7 +10,7 @@
 
 .description {
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: 40px;
 
   a {
     color: $blackColor;
@@ -28,4 +28,5 @@
 .descriptionHidden {
   visibility: hidden;
   opacity: 0;
+  margin-bottom: 0px;
 }

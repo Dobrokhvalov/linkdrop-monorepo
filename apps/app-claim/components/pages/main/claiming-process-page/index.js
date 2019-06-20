@@ -3,7 +3,6 @@ import { Loading } from 'linkdrop-ui-kit'
 import { translate, actions } from 'decorators'
 import styles from './styles.module'
 import commonStyles from '../styles.module'
-import { getHashVariables } from 'linkdrop-commons'
 import config from 'config-claim'
 import classNames from 'classnames'
 import Fingerprint2 from 'fingerprintjs2'
@@ -26,7 +25,6 @@ class ClaimingProcessPage extends React.Component {
   componentWillReceiveProps ({ transactionId: id, transactionStatus: status }) {
     const { transactionId: prevId, transactionStatus: prevStatus } = this.props
     if (id != null && prevId === null) {
-      const { chainId } = getHashVariables()
       this.statusCheck = window.setInterval(_ => this.actions().tokens.checkTransactionStatus({ transactionId: id, chainId }), 3000)
     }
     if (status != null && prevStatus === null) {
