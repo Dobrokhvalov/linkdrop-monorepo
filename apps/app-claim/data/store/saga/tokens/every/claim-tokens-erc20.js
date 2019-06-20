@@ -1,6 +1,5 @@
 import { put, call } from 'redux-saga/effects'
 import { claimTokens } from 'data/api/tokens'
-const ls = window.localStorage
 
 const generator = function * ({ payload }) {
   try {
@@ -9,8 +8,8 @@ const generator = function * ({ payload }) {
     const { success, txHash, message } = yield call(claimTokens, { address, fingerprint })
 
     if (success) {
+      console.log({ txHash })
       yield put({ type: 'TOKENS.SET_TRANSACTION_ID', payload: { transactionId: txHash } })
-      ls && ls.setItem('claimed', 'true')
     } else {
       if (message && (message === 'All links have been claimed' || message === 'Campaign is over')) {
         yield put({ type: 'USER.SET_ERRORS', payload: { errors: ['ALL_LINKS_CLAIMED'] } })

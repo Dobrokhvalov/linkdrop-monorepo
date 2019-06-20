@@ -4,7 +4,7 @@
   "openseaMainnet": "https://api.opensea.io",
   "openseaRinkeby": "https://rinkeby-api.opensea.io",
   "trustWallet": "https://api.trustwalletapp.com",
-  "claimHost": "http://104.236.71.227:5011",
+  "claimHost": "https://dclinks3.herokuapp.com",
   "defaultAmount": 100,
   "defaultSymbol": "MANA",
   "defaultChainId": 4,
