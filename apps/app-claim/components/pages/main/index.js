@@ -1,3 +1,4 @@
+/* global web3 */
 import React from 'react'
 import { Loading } from 'linkdrop-ui-kit'
 import { actions, translate, platform } from 'decorators'
@@ -92,23 +93,27 @@ class Claim extends React.Component {
 
     if (alreadyClaimed) {
       // if tokens were already claimed (if proxy address is totally empty).
-      return <ClaimingFinishedPage
-        {...commonData}
-      />
+      return <div>
+        <ClaimingFinishedPage
+          {...commonData}
+        />
+      </div>
     }
     switch (step) {
       case 1:
-        return <InitialPage
-          {...commonData}
-          onClick={_ => {
-            if (account) {
-              // if wallet account was found in web3 context, then go to step 4 and claim data
-              return this.actions().user.setStep({ step: 4 })
-            }
-            // if wallet was not found in web3 context, then go to step 2 with wallet select page and instructions
-            this.actions().user.setStep({ step: 2 })
-          }}
-        />
+        return <div>
+          <InitialPage
+            {...commonData}
+            onClick={_ => {
+              if (account && web3.currentProvider.isTrust) {
+                // if wallet account was found in web3 context, then go to step 4 and claim data
+                return this.actions().user.setStep({ step: 4 })
+              }
+              // if wallet was not found in web3 context, then go to step 2 with wallet select page and instructions
+              this.actions().user.setStep({ step: 2 })
+            }}
+          />
+        </div>
       case 2:
         // page with wallet select component
         return <WalletChoosePage onClick={_ => {
