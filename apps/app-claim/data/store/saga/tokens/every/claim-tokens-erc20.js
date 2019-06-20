@@ -8,7 +8,6 @@ const generator = function * ({ payload }) {
     const { success, txHash, message } = yield call(claimTokens, { address, fingerprint })
 
     if (success) {
-      console.log({ txHash })
       yield put({ type: 'TOKENS.SET_TRANSACTION_ID', payload: { transactionId: txHash } })
     } else {
       if (message && (message === 'All links have been claimed' || message === 'Campaign is over')) {
