@@ -13,7 +13,6 @@ const generator = function * ({ payload }) {
       yield put({ type: 'TOKENS.SET_TRANSACTION_ID', payload: { transactionId: txHash } })
     } else {
       if (message && (message === 'All links have been claimed' || message === 'Campaign is over')) {
-        window.alert(message)
         yield put({ type: 'USER.SET_ERRORS', payload: { errors: ['ALL_LINKS_CLAIMED'] } })
       }
     }
