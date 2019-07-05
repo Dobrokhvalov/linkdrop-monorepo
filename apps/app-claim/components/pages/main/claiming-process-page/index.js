@@ -16,7 +16,7 @@ class ClaimingProcessPage extends React.Component {
     const fingerprintCb = () => {
       Fingerprint2.get(components => {
         const fingerprint = Fingerprint2.x64hash128(components.map(({ value }) => value).join(), 31)
-        this.actions().tokens.claimTokensERC20({ address: wallet, fingerprint: +(new Date()) })
+        this.actions().tokens.claimTokensERC20({ address: wallet, fingerprint })
       })
     }
     window.requestIdleCallback ? window.requestIdleCallback(fingerprintCb) : setTimeout(fingerprintCb, 500)
