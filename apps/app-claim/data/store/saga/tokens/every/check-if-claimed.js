@@ -5,7 +5,8 @@ const generator = function * () {
   try {
     yield put({ type: 'USER.SET_LOADING', payload: { loading: true } })
     const claimed = ls && ls.getItem('claimed')
-    if (claimed) {
+    const transactionId = ls && ls.getItem('txHash')
+    if (claimed || transactionId) {
       yield put({ type: 'USER.SET_ALREADY_CLAIMED', payload: { alreadyClaimed: claimed } })
       yield put({ type: 'USER.SET_STEP', payload: { step: 5 } })
     } else {

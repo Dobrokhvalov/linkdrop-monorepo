@@ -1,10 +1,11 @@
 import reducers from './reducers'
+const ls = window.localStorage
 
 const initialState = {
   loading: false,
   link: '',
   transactionStatus: null,
-  transactionId: null
+  transactionId: ls && ls.getItem('txHash')
 }
 
 export default (state = initialState, action = {}) => {

@@ -10,10 +10,11 @@ const generator = function * ({ payload }) {
 
     if (success) {
       ls && ls.setItem('claimed', 'true')
+      ls && ls.setItem('txHash', txHash)
       yield put({ type: 'TOKENS.SET_TRANSACTION_ID', payload: { transactionId: txHash } })
     } else {
-      if (message && (message === 'All links have been claimed' || message === 'Campaign is over')) {
-        yield put({ type: 'USER.SET_ERRORS', payload: { errors: ['ALL_LINKS_CLAIMED'] } })
+      if (message) {
+        yield put({ type: 'USER.SET_ERRORS', payload: { errors: [ERRORS[message] || 'SOME_ERROR_OCCURED'] } })
       }
     }
     yield put({ type: 'USER.SET_LOADING', payload: { loading: false } })
@@ -23,3 +24,14 @@ const generator = function * ({ payload }) {
 }
 
 export default generator
+
+const ERRORS = {
+  'All links have been claimed': 'ALL_LINKS_CLAIMED',
+  'Campaign is over': 'CAMPAIGN_OVER',
+  'Oops! Something went wrong': 'SOME_ERROR_OCCURED',
+  'Oops! Something went wrong!': 'SOME_ERROR_OCCURED',
+  'You have already claimed tokens': 'YOU_CLAIMED_TOKENS',
+  'This device has already claimed tokens': 'USED_DEVICE',
+  'No more rewards are allowed to claim': 'NO_MORE_REWARDS_ALLOWED',
+  'All rewards have been claimed': 'ALL_REWARDS_CLAIMED'
+}

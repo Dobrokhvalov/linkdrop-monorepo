@@ -32,6 +32,30 @@ export default {
       title: 'All rewards claimed',
       description: 'You can still create your avatar and claim your name'
     },
+    CAMPAIGN_OVER: {
+      title: 'Campaign is over',
+      description: ''
+    },
+    SOME_ERROR_OCCURED: {
+      title: 'Oops! Something went wrong',
+      description: ''
+    },
+    YOU_CLAIMED_TOKENS: {
+      title: 'You have already claimed tokens',
+      description: ''
+    },
+    USED_DEVICE: {
+      title: 'This device has already claimed tokens',
+      description: ''
+    },
+    NO_MORE_REWARDS_ALLOWED: {
+      title: 'No more rewards are allowed to claim',
+      description: ''
+    },
+    ALL_REWARDS_CLAIMED: {
+      title: 'All rewards have been claimed',
+      description: ''
+    },
     NETWORK_NOT_SUPPORTED: {
       title: 'Network is not supported',
       description: 'Switch to {{network}}',
