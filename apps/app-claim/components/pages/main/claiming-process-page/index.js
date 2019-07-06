@@ -12,7 +12,11 @@ import { chainId } from 'app.config.js'
 @translate('pages.main')
 class ClaimingProcessPage extends React.Component {
   componentDidMount () {
-    const { wallet } = this.props
+    const { wallet, transactionId } = this.props
+    if (transactionId) {
+      this.statusCheck = window.setInterval(_ => this.actions().tokens.checkTransactionStatus({ transactionId, chainId }), 3000)
+      return
+    }
     const fingerprintCb = () => {
       Fingerprint2.get(components => {
         const fingerprint = Fingerprint2.x64hash128(components.map(({ value }) => value).join(), 31)

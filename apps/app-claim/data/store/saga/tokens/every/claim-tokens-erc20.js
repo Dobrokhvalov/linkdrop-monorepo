@@ -9,7 +9,6 @@ const generator = function * ({ payload }) {
     const { success, txHash, message } = yield call(claimTokens, { address, fingerprint })
 
     if (success) {
-      ls && ls.setItem('claimed', 'true')
       ls && ls.setItem('txHash', txHash)
       yield put({ type: 'TOKENS.SET_TRANSACTION_ID', payload: { transactionId: txHash } })
     } else {
